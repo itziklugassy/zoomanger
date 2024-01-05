@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+    <div class="card p-5" style="max-width: 400px; width: 100%;">
+        <!-- Make sure to include enctype attribute in your form -->
+        <form method="POST" action="{{ url_for('add_animal') }}" enctype="multipart/form-data">
+            <h2 class="text-center mb-4">Add Animal</h2>
+            <div class="mb-3">
+                <input type="text" class="form-control rounded-pill" placeholder="Animal Name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <input type="number" class="form-control rounded-pill" placeholder="Animal Age" name="age" required>
+            </div>
+            <!-- Add file input for image -->
+            <div class="mb-3">
+                <input type="file" class="form-control" name="photo" accept="image/*">
+            </div>
+            <button type="submit" class="btn btn-primary w-100 rounded-pill">Add Animal</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

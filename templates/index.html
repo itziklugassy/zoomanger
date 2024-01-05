@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1> My Zoo Animal List</h1>
+<a href="{{ url_for('add_animal') }}" class="btn btn-primary mb-3">Add Animal</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Actions</th>
+            <th>Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for animal in animals %}
+        <tr>
+            <td>{{ animal.id }}</td>
+            <td>{{ animal.name }}</td>
+            <td>{{ animal.age }}</td>
+            <td>
+                <a href="{{ url_for('update_animal', id=animal.id) }}" class="btn btn-sm btn-warning">Update</a>
+                <a href="{{ url_for('delete_animal', id=animal.id) }}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+            <td>
+                <!-- Display image -->
+                {% if animal.image_filename %}
+                    <img src="{{ url_for('uploaded_file', filename=animal.image_filename) }}" alt="{{ animal.name }}" width="100">
+                {% else %}
+                    No Image
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('logout') }}" class="btn btn-secondary">Logout</a>
+{% endblock %}
